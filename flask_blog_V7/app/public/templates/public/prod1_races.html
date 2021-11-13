@@ -1,0 +1,25 @@
+{% extends "public/prod1_template.html" %}
+{% block bns_content %}
+    <div class="col-md-6" >
+        <div class="col-md-12 mt-5 py-3  bg-dark box-shadow text-center round-edge">
+            <div class="round-edge img-fluid mx-auto" style="background:url('{{ url_for('static', filename='/images/bg_races.jpg') }}');">
+                <br><br>
+                <div class="row offset-md-3">
+                    {% for race in races %}
+                        <div class="col-md-2 ">
+                            <a class="text-muted" href="{{ url_for('public.show_race', name=race.name) }}">                            
+                                <h5 class="mx-auto text-light"> {{race.name}} </h5>
+                                <img  src="{{race.logo_url}}" title="{{race.name}}"class="mx-auto d-block img-fluid"> 
+                            </a>
+                        </div>
+                    {% endfor %}                        
+                </div>
+                <br>
+                <h2 class="text-light">Races</h2>
+                <p class="text-light">In the community of martial artists, there are four races: <br>
+                    the deliberate Gon, the mischevious Lyn, the elegant Yun, and the industrious Jin.</p>
+                <br><br><br>
+            </div>
+        </div>
+    </div>
+{% endblock %}

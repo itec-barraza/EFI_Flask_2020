@@ -1,0 +1,37 @@
+{% extends "public/index.html" %}
+
+{% block title %}
+    {{ user.name }}
+{% endblock %}
+
+{% block content %}
+<div class="col-md-8 offset-md-2 pt-2 text-center" >
+    <div class="pt-3 pb-3 m-2 bg-dark box-shadow mx-auto round-edge">
+        <h2 class="text-info mt-2">User Details</h2>
+        <br>
+        <div class="col-md-4 offset-md-4 pl-5 text-left">
+      
+    <div class="text-secondary">  Name:  <p class="  text-light">{{ user.name }}</p></div>
+    <div class="text-secondary">  E-mail:   <p class="  text-light"> {{ user.email }} </p></div>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <div class="text-light">
+            {{ form.is_admin.label }}
+            {{ form.is_admin }}<br><br>
+            {% for error in form.is_admin.errors %}
+            <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.submit() }}
+        </div> <br>
+    </form>
+    <form action="{{ url_for('admin.delete_user', user_id=user.id) }}" method="post" novalidate>
+        <input type="submit" value="Delete" />
+    </form>
+        </div>
+        <br><br>
+    </div>
+</div>
+<br><br><br><br>   
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "public/index.html" %}
+
+{% block title %}
+    Posts | Admin
+{% endblock %}
+
+{% block content %}
+<div class="col-md-8 offset-md-2 pt-2 text-center" >
+    <div class="pt-3 pb-3 m-2 bg-dark box-shadow mx-auto round-edge">
+        <h2 class="text-info mt-2">Admin Panel</h2>
+        <br>
+        <div>
+            <a class="text-muted" href="{{ url_for('admin.post_form') }}">
+                <p class="text-light">New Post</p></a>
+        </div>
+        <br><br>
+        <h2 class="text-info pb-4 ml-n3">Posts</h2>
+        <div class="col-md-4 offset-md-4 pl-5 text-left">
+            <ul>
+                {% for post in posts %}
+                    <li>
+                        <a class="text-muted" href="{{ url_for('admin.update_post_form', post_id=post.id) }}">
+                            <p class="text-light">{{ post.title }}</p></a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <br><br>
+    </div>
+</div>
+<br><br><br><br>  
+{% endblock %}

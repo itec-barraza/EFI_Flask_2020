@@ -1,0 +1,23 @@
+{% extends "public/prod1_template.html" %}
+
+{% block bns_content %}
+    <div class="col-md-6" >
+        <div class="col-md-12 mt-3 p-1  bg-dark box-shadow round-edge">
+            <div class="round-edge img-fluid mx-auto" style="background:url('{{ url_for('static', filename='/images/bg_raceview.jpg') }}');">
+                <div class="row">                    
+                    <div class="img fluid col-md-3 ml-4 mt-2"><img src="{{race.img_url}}" ></div>    
+                    <div class="col-md-7 text-center text-light offset-md-1 ">
+                        <h1 class=" offset-md-1 pt-3 ml-n2">{{ race.name }}</h1>
+                        <br><br>
+                            <p class="pl-3 text-light">
+                                {% autoescape false %}
+                                    {{ race.content }}
+                                {% endautoescape %}
+                            </p>     
+                    </div>                           
+                </div>
+                <br>
+            </div>
+        </div>
+    </div>
+{% endblock %}

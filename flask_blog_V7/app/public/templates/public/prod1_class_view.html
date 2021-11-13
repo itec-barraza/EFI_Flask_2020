@@ -1,0 +1,22 @@
+{% extends "public/prod1_template.html" %}
+
+{% block bns_content %}
+    <div class="col-md-6" >
+        <div class="col-md-12 mt-3 p-1  bg-dark box-shadow round-edge">
+            <div class="round-edge img-fluid mx-auto" style="background-position: center; background-repeat: no-repeat; background:url('{{hero.img_url}}');">
+                
+                <div class="col-md-7 text-center text-light ml-2">
+                    <h1 class=" offset-md-1 pt-3 ml-n2">{{ hero.name }}</h1>
+                    <video class="" autoplay loop muted width="350" src="{{ hero.video_url }}"></video>
+                    <br><br>
+                        <p class="text-light">
+                            {% autoescape false %}
+                                {{ hero.content }}
+                            {% endautoescape %}
+                        </p>                    
+                </div>
+                <br>
+            </div>
+        </div>
+    </div>
+{% endblock %}

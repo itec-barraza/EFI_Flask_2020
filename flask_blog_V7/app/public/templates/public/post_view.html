@@ -1,0 +1,65 @@
+{% extends "public/index.html" %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+<br>
+<div class="col-md-8 offset-md-2 pt-2 text-center" >
+    <div class="pt-3 pb-3 m-2 bg-dark box-shadow mx-auto round-edge"> <br>        
+        <h1 class="text-success">{{ post.title }}</h1>
+        <div class="text-light"> <br>            
+            <span class="blogDate">{{ post.created|datetime('full') }}</span> <br><br>                    
+            <h5 class="pt-3">
+                <img class="img-fluid" style="max-width: 600px;" src="{{post.img_url}}"> <br> <br> <br>
+                {% autoescape false %}
+                    {{ post.content }}
+                {% endautoescape %}
+            </h5>        
+        </div> <br>      
+        <h2 class="text-warning pt-3">Comments</h2>        
+        <div id="comments" class="pt-2 text-light">
+            {% for comment in post.comments %}
+                <div>
+                    <div class="p-2">
+                        The user {{ comment.user_name }} comemented on 
+                        <span class="blogDate">{{ comment.created|datetime }}</span>:
+                        {% if current_user.is_admin %}                    
+                            {#<a type="button" class="btn btn-secondary">  href="{{url_for('eliminarLibro', libro_id = libro.id )}}" (eliminar comentario)
+                                <i class="far fa-trash-alt"></i>           
+                            </a> #}
+                        {% endif %}
+                    </div>
+                    <div>
+                        {% autoescape false %}
+                            {{ comment.content }}
+                        {% endautoescape %}
+                        </div>
+                </div>
+            {% else %}
+                <li>No comments yet, be the first! </li>
+            {% endfor %}
+            <br><br>
+            {% if current_user.is_authenticated %}
+            <div>
+                <form action="" method="post" novalidate>                
+                    {{ form.hidden_tag() }}
+                    <div class="form-group">
+                        <h4> {{ form.content.label }} </h4>
+                        {{ form.content }} <br>
+                        
+                        {% for error in form.content.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            <br><br>
+                        {% endfor %}
+                        
+                        {{ form.submit() }}
+                    </div>
+                </form>
+            </div>
+            {% endif %}
+        </div>
+        <br>
+    </div>    
+</div>
+<br><br><br><br>           
+{% endblock %}

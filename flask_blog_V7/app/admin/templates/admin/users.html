@@ -1,0 +1,28 @@
+{% extends "public/index.html" %}
+
+{% block title %}
+    Users | Admin
+{% endblock %}
+
+{% block content %}
+<div class="col-md-8 offset-md-2 pt-2 text-center" >
+    <div class="pt-3 pb-3 m-2 bg-dark box-shadow mx-auto round-edge">
+        <h2 class="text-info mt-2">User List</h2>
+        <br>
+        <div class="col-md-4 offset-md-4 pl-5 text-left">
+            <ul>
+                {% for user in users %}
+                    <p class="float-right text-secondary">(Admin: {{ user.is_admin}})</p>
+                    <li>
+                        <a class="text-muted" href="{{ url_for('admin.update_user_form', user_id=user.id) }}">
+                            <p class="text-light"> {{ user.name }}</p>
+                        </a>
+                    </li>                    
+                {% endfor %}
+                </ul>
+        </div>
+        <br><br>
+    </div>
+</div>
+<br><br><br><br>    
+{% endblock %}

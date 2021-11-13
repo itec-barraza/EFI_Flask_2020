@@ -1,0 +1,47 @@
+<!-- CARGAMOS COMO EXTEND LA PLANTILLA BASE -->
+{% extends "public/index.html" %}
+<!-- CARGAMOS CONTENIDO EN EL BLOQUE DE TITULO -->
+{% block title %}
+    {% if form.title.data %}
+        {{ form.title.data }}
+    {% else %}
+        New Post | Admin
+    {% endif %}
+{% endblock %}
+<!-- CARGAMOS CONTENIDO EN EL BLOQUE DE CONTENIDOS -->
+{% block content %}
+<div class="col-md-8 offset-md-2 pt-2 " >
+    <div class="pt-3 pb-3 m-2 bg-dark box-shadow mx-auto round-edge">
+        <h2 class="text-info mt-2 text-center">Add/Edit Post</h2> <br>
+        <form class="form-group col-md-6 offset-3 mr-4 text-light" action="" method="post" novalidate>
+            {{ form.hidden_tag() }}
+            <div>
+                {{ form.title.label }}
+                {{ form.title (class_="form-control") }}<br>
+                <!-- LE MOSTRAMOS AL USUARIO EL ERROR DE VALIDACIÓN -->
+                {% for error in form.title.errors %}
+                <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div>
+                {{ form.content.label }}
+                {{ form.content (class_="form-control") }}<br>
+                <!-- LE MOSTRAMOS AL USUARIO EL ERROR DE VALIDACIÓN -->
+                {% for error in form.content.errors %}
+                <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div>
+                {{ form.submit() }}
+            </div>
+        </form>
+        {% if post %}
+        <form class="text-center" action="{{ url_for('admin.delete_post', post_id=post.id) }}" method="post" novalidate>
+            <input type="submit" value="Delete" />
+        </form>
+        {% endif %}        
+        <br><br>
+    </div>
+</div>
+<br><br><br><br>  
+{% endblock %}

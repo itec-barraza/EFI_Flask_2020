@@ -1,0 +1,58 @@
+<!-- CARGAMOS COMO EXTEND LA PLANTILLA BASE -->
+{% extends "public/index.html" %}
+<!-- CARGAMOS CONTENIDO EN EL BLOQUE DE TITULO -->
+{% block title %}Sign Up{% endblock %}
+<!-- CARGAMOS CONTENIDO EN EL BLOQUE DE CONTENIDOS -->
+{% block content %}
+<br><br>
+    <div class="col-md-4 offset-md-4 text-center" >
+        <div class="pt-3 pb-3 m-2 bg-dark box-shadow mx-auto round-edge">
+            <h3 class=" text-info"> Sign Up </h3>
+            <br>
+            {% if error %}
+                <p class="text-danger"><strong>Error:</strong> {{ error }}
+            {% endif %}
+            <!-- PARA EVITAR QUE EL BROWSER VALIDE LOS CAMPOS POR NOSOTROS, AÑADIMOS EL ATRIBUTO novalidate -->
+            <form action="" autocomplete ="off"method="post" novalidate>
+            <!-- LA LÍNEA {{ form.hidden_tag() }} AÑADE TODOS LOS CAMPOS DE TIPO HIDDEN DEL FORM SI LOS HAY. Flask-WTF GENERA PARA TODAS LAS INSTANCIAS DE LA CLASE FlaskForm UN CAMPO OCULTO QUE PROTEGE LA APP DE ATAQUES CSRF -->
+            {{ form.hidden_tag() }}
+            <div class="form-group col-md-6 offset-3 mr-4 text-light">
+                <div class="row">
+                    {{ form.name.label }}
+                    {{ form.name (class_="form-control")}}<br>
+                </div>
+                <!-- LE MOSTRAMOS AL USUARIO EL ERROR DE VALIDACIÓN -->
+                {% for error in form.name.errors %}
+                    <span class="text-danger">{{ error }}</span>
+                {% endfor %}
+                <br>
+                <div class="row">
+                    {{ form.email.label }}
+                    {{ form.email (class_="form-control")}}<br>
+                </div>
+                {% for error in form.email.errors %}
+                    <span class="text-danger">{{ error }}</span>
+                {% endfor %}     
+                <br>       
+                <div class="row">
+                    {{ form.password.label }}
+                    {{ form.password (class_="form-control")}}<br>
+                </div>
+                {% for error in form.password.errors %}
+                    <span class="text-danger">{{ error }}</span>
+                    <br>
+                {% endfor %}
+                <br>
+            
+                {{ form.submit() }}
+            </div>
+            </div>
+        
+        <br>
+        <div class="bg-secondary col-md-6 offset-md-3 p-2 round-edge text-warning">
+            Already have an account? <br><a class="text-light" href="{{ url_for('auth.login') }}">  Sign In</a>
+        </div>
+    </div>
+    <br><br>
+    
+{% endblock %}

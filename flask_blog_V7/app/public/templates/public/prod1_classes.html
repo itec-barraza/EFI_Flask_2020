@@ -1,0 +1,22 @@
+{% extends "public/prod1_template.html" %}
+{% block bns_content %}
+    <div class="col-md-6" >
+        <div class="col-md-12 mt-5 py-3  bg-dark box-shadow text-center round-edge">
+            <div class="round-edge img-fluid mx-auto" style="background:url('{{ url_for('static', filename='/images/hero-banner.jpg') }}');">
+                <br><br><br><br><br>
+                <h2 class="text-light">Classes</h2>
+                <p class="text-light">Train as one of 5 classes, each with their own strengths, defenses, abilities, and devastating combos.</p>
+                <div class="row offset-md-1">
+                    {% for hero in heroes %}
+                        <div class="col-md-2 ">
+                            <a class="text-muted" href="{{ url_for('public.show_class', name=hero.name) }}">
+                            <img  src="{{hero.logo_url}}" title="{{hero.name}}"class="mx-auto d-block img-fluid"> 
+                            <h5 class="mx-auto text-light"> {{hero.name}} </h5></a>
+                        </div>
+                    {% endfor %}                
+                </div>
+                <br>
+            </div>
+        </div>
+    </div>
+{% endblock %}

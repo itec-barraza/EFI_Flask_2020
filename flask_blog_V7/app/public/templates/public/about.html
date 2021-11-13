@@ -1,0 +1,32 @@
+<!-- CARGAMOS COMO EXTEND LA PLANTILLA BASE -->
+{% extends "public/index.html" %}
+<!-- CARGAMOS CONTENIDO EN EL BLOQUE DE TITULO -->
+{% block title %}About Us{% endblock %}
+<!-- CARGAMOS CONTENIDO EN EL BLOQUE DE CONTENIDOS -->
+{% block content %}
+    <div class="col-md-8 offset-md-2 pt-2 text-center" >
+        <div class="pt-3 pb-3 m-2 bg-dark box-shadow mx-auto round-edge">
+            <h3 class=" text-success">Our Story</h3>
+            <p class="text-light pt-2 m-3">
+                <b>Sarasa Games</b> was founded in 2010 to develop, publish, and support the most player-focused games in the world. <br>
+                In 2016, we released one of our major titles, <b>Blade & Soul</b>, following the success of our hit <b>True-Action Combat</b>
+                in previous titles. 
+                <br><br>
+                Founded by Brandon Beck and Marc Merrill, and led by CEO Nicolo Laurent. <br> <b>Sarasa</b> is headquartered in Paris, France, and has 1,200+ members in 6+ offices worldwide. 
+            </p>
+            <br><br>
+            <h3 class="text-success">Our values</h3>
+            <p class="text-light pt-2 m-3">
+                <b>Rich game mechanics</b>, <b>Player Interaction</b>, constant <b>Support</b> and <b>Communication</b>, always <b> Innovating</b>.
+                <br><br>
+            </p>
+
+            <img class="img-fluid" src="{{ url_for('static', filename='/images/about_group.jpg') }}" alt="">
+            <br><br>
+            {#<a class="h2 text-warning" href="{{ url_for('public.join_us') }}">Work with Us!</a>#}
+            <br><br>
+            
+        </div>
+    </div>
+    <br><br><br>
+{% endblock %}
